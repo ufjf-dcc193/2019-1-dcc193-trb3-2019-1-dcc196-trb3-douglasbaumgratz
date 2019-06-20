@@ -20,8 +20,9 @@ public class Usuario {
     private String descricao;
     private String email;
 
-    public Usuario(Long id, String nome, int codigo, String descricao, String email) {
-        this.id = id;
+    public Usuario(){}
+    
+    public Usuario(String nome, int codigo, String descricao, String email) {        
         this.nome = nome;
         this.codigo = codigo;
         this.descricao = descricao;
