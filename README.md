@@ -1,7 +1,7 @@
 ## Laboratório de Programação de Sistemas Web II - DCC193
 
 
-### ALUNOS:
+### ALUNO:
 
 Douglas Baumgratz de Carvalho <br>
 E-mail: douglas.baumgratz@gmail.com  

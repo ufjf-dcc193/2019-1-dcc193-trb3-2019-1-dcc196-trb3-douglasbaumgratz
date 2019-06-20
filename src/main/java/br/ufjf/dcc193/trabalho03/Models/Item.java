@@ -27,6 +27,8 @@ public class Item {
     @OneToMany(fetch = FetchType.LAZY)
     private List<Vinculo> vinculo;
 
+    public Item(){}
+    
     public Item(Long id, String titulo) {
         this.id = id;
         this.titulo = titulo;
