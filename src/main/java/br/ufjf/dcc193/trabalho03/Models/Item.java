@@ -15,10 +15,10 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "item")
-public class Item {    
+public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long id;    
+    private Long id;
     private String titulo;
     @OneToMany(fetch = FetchType.EAGER)
     private List<Anotacao> anotacao;
@@ -77,5 +77,4 @@ public class Item {
         return "Item [id=" + id + ", titulo=" + titulo + ", vinculo=" + vinculo + "]";
     }
 
-    
 }

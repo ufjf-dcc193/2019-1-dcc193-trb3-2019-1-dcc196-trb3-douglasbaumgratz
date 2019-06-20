@@ -19,11 +19,11 @@ import javax.persistence.Table;
 public class Vinculo {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long id;  
+    private Long id;
     @OneToOne(fetch = FetchType.EAGER)
-    private Item itemOrigem; 
+    private Item itemOrigem;
     @OneToOne(fetch = FetchType.EAGER)
-    private Item itemDestino; 
+    private Item itemDestino;
     @OneToMany(fetch = FetchType.EAGER)
     private List<Etiqueta> etiqueta;
     @OneToMany(fetch = FetchType.EAGER)
@@ -79,6 +79,5 @@ public class Vinculo {
     public String toString() {
         return "Vinculo [id=" + id + ", itemDestino=" + itemDestino + ", itemOrigem=" + itemOrigem + "]";
     }
-    
-    
+
 }

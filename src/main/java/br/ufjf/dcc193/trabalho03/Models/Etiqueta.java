@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
 /**
  * Etiqueta
  */
@@ -13,7 +14,7 @@ import javax.persistence.Table;
 public class Etiqueta {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long id; 
+    private Long id;
     private String titulo;
     private String descricao;
     private String url;
@@ -62,6 +63,4 @@ public class Etiqueta {
         return "Etiqueta [descricao=" + descricao + ", id=" + id + ", titulo=" + titulo + ", url=" + url + "]";
     }
 
-    
-    
 }

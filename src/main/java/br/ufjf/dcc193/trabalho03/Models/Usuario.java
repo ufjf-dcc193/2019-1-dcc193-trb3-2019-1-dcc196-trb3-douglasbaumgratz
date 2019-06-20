@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
 /**
  * Usuario
  */
@@ -13,7 +14,7 @@ import javax.persistence.Table;
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long id;    
+    private Long id;
     private String nome;
     private int codigo;
     private String descricao;
@@ -73,6 +74,4 @@ public class Usuario {
                 + nome + "]";
     }
 
-    
-    
 }

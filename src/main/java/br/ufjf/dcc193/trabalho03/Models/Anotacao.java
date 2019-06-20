@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
 /**
  * Anotacao
  */
@@ -15,7 +16,7 @@ import javax.persistence.Table;
 public class Anotacao {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long id;    
+    private Long id;
     private String titulo;
     private String descricao;
     private String url;
@@ -103,5 +104,4 @@ public class Anotacao {
                 + descricao + ", id=" + id + ", titulo=" + titulo + ", url=" + url + "]";
     }
 
-    
 }
