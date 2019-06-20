@@ -29,8 +29,7 @@ public class Item {
 
     public Item(){}
     
-    public Item(Long id, String titulo) {
-        this.id = id;
+    public Item(String titulo) {        
         this.titulo = titulo;
     }
 
