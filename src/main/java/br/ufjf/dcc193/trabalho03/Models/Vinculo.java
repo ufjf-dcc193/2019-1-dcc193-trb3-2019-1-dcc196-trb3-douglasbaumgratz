@@ -29,10 +29,19 @@ public class Vinculo {
     @OneToMany(fetch = FetchType.LAZY)
     private List<Anotacao> anotacao;
 
-    public Vinculo(Long id, Item itemOrigem, Item itemDestino) {
-        this.id = id;
+    public Vinculo() {
+    }
+
+    public Vinculo(Item itemOrigem, Item itemDestino) {
         this.itemOrigem = itemOrigem;
         this.itemDestino = itemDestino;
+    }
+
+    public Vinculo(Item itemOrigem, Item itemDestino, List<Etiqueta> etiqueta, List<Anotacao> anotacao) {
+        this.itemOrigem = itemOrigem;
+        this.itemDestino = itemDestino;
+        this.etiqueta = etiqueta;
+        this.anotacao = anotacao;
     }
 
     public Long getId() {

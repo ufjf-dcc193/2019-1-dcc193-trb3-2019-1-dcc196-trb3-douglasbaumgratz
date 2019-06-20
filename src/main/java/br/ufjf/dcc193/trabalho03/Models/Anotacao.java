@@ -25,8 +25,9 @@ public class Anotacao {
     private String dataInclusao;
     private String dataAlteracao;
 
-    public Anotacao(Long id, String titulo, String descricao, String url, String dataInclusao, String dataAlteracao) {
-        this.id = id;
+    public Anotacao(){}
+    
+    public Anotacao(String titulo, String descricao, String url, String dataInclusao, String dataAlteracao) {        
         this.titulo = titulo;
         this.descricao = descricao;
         this.url = url;
@@ -34,8 +35,7 @@ public class Anotacao {
         this.dataAlteracao = dataAlteracao;
     }
 
-    public Anotacao(Long id, String titulo, String descricao, String dataInclusao, String dataAlteracao) {
-        this.id = id;
+    public Anotacao(String titulo, String descricao, String dataInclusao, String dataAlteracao) {        
         this.titulo = titulo;
         this.descricao = descricao;
         this.dataInclusao = dataInclusao;

@@ -16,11 +16,15 @@ public class MainApplication {
 		EtiquetaRepository repositorioEtiqueta;
 		UsuarioRepository repositorioUsuario;
 		ItemRepository repositorioItem;
+		AnotacaoRepository repositorioAnotacao;
+		VinculoRepository repositorioVinculo;
 
 		ctx = SpringApplication.run(MainApplication.class, args);
 		repositorioEtiqueta = ctx.getBean(EtiquetaRepository.class);
 		repositorioUsuario = ctx.getBean(UsuarioRepository.class);
 		repositorioItem = ctx.getBean(ItemRepository.class);
+		repositorioAnotacao = ctx.getBean(AnotacaoRepository.class);
+		repositorioVinculo = ctx.getBean(VinculoRepository.class);
 
 		Etiqueta etiqueta1;
 		Etiqueta etiqueta2;
@@ -33,9 +37,17 @@ public class MainApplication {
 		Item item2;
 		Item item3;
 
-		etiqueta1 = new Etiqueta("Título 1", "Descrição 1", "URL1");
-		etiqueta2 = new Etiqueta("Título 2", "Descrição 2", "URL2");
-		etiqueta3 = new Etiqueta("Título 3", "Descrição 3", "URL3");
+		Anotacao anotacao1;
+		Anotacao anotacao2;
+		Anotacao anotacao3;
+
+		Vinculo vinculo1;
+		Vinculo vinculo2;
+		Vinculo vinculo3;
+
+		etiqueta1 = new Etiqueta("Etiqueta 1", "Descrição 1", "URL1");
+		etiqueta2 = new Etiqueta("Etiqueta 2", "Descrição 2", "URL2");
+		etiqueta3 = new Etiqueta("Etiqueta 3", "Descrição 3", "URL3");
 		repositorioEtiqueta.save(etiqueta1);
 		repositorioEtiqueta.save(etiqueta2);
 		repositorioEtiqueta.save(etiqueta3);
@@ -52,6 +64,19 @@ public class MainApplication {
 		repositorioItem.save(item2);
 		repositorioItem.save(item3);
 
+		anotacao1 = new Anotacao("Anotação 1", "descricao 1", "dataInclusao1", "dataAlteracao1");
+		anotacao2 = new Anotacao("Anotação 2", "descricao 2", "dataInclusao2", "dataAlteracao2");
+		anotacao3 = new Anotacao("Anotação 3", "descricao 3", "dataInclusao3", "dataAlteracao3");
+		repositorioAnotacao.save(anotacao1);
+		repositorioAnotacao.save(anotacao2);
+		repositorioAnotacao.save(anotacao3);
+
+		vinculo1 = new Vinculo(item1, item1);
+		vinculo2 = new Vinculo(item2, item2);
+		vinculo3 = new Vinculo(item3, item3);
+		repositorioVinculo.save(vinculo1);
+		repositorioVinculo.save(vinculo2);
+		repositorioVinculo.save(vinculo3);
 	}
 
 }

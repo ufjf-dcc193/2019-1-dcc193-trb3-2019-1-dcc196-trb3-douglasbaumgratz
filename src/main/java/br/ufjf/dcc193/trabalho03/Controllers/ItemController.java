@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
-import br.ufjf.dcc193.trabalho03.Models.Item;
-import br.ufjf.dcc193.trabalho03.Persistence.ItemRepository;
+import br.ufjf.dcc193.trabalho03.Models.*;
+import br.ufjf.dcc193.trabalho03.Persistence.*;
 
 /**
  * ItemController
@@ -21,13 +21,19 @@ import br.ufjf.dcc193.trabalho03.Persistence.ItemRepository;
 @Controller
 public class ItemController {
     @Autowired
-    ItemRepository itens;
+    ItemRepository repositorioItens;
+    @Autowired
+    AnotacaoRepository repositorioAnotacoes;
+    @Autowired
+    EtiquetaRepository repositorioEtiquetas;
+    @Autowired
+    VinculoRepository repositorioVinculos;
 
     @RequestMapping("/item-listar.html")
     public ModelAndView listar() {
         ModelAndView mv = new ModelAndView();
+        List<Item> item = repositorioItens.findAll();
         mv.setViewName("item/listar");
-        List<Item> item = itens.findAll();
         mv.addObject("itens", item);
         mv.addObject("title", "Itens");
         return mv;
@@ -36,18 +42,30 @@ public class ItemController {
     @GetMapping("/item-novo.html")
     public ModelAndView nova() {
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("item/novo");
+        List<Anotacao> anotacoes = repositorioAnotacoes.findAll();
+        List<Etiqueta> etiquetas = repositorioEtiquetas.findAll();
+        List<Vinculo> vinculos = repositorioVinculos.findAll();
+        mv.addObject("anotacoes", anotacoes);
+        mv.addObject("etiquetas", etiquetas);
+        mv.addObject("vinculos", vinculos);
         mv.addObject("title", "Item");
+        mv.setViewName("item/novo");
         return mv;
     }
 
     @GetMapping("/item-editar.html")
     public ModelAndView editar(Item aux) {
         ModelAndView mv = new ModelAndView();
-        Item item = itens.findById(aux.getId()).get();
-        mv.setViewName("item/editar");
+        Item item = repositorioItens.findById(aux.getId()).get();
+        List<Anotacao> anotacoes = repositorioAnotacoes.findAll();
+        List<Etiqueta> etiquetas = repositorioEtiquetas.findAll();
+        List<Vinculo> vinculos = repositorioVinculos.findAll();
+        mv.addObject("anotacoes", anotacoes);
+        mv.addObject("etiquetas", etiquetas);
+        mv.addObject("vinculos", vinculos);        
         mv.addObject("title", "Item");
         mv.addObject("item", item);
+        mv.setViewName("item/editar");
         return mv;
     }
 
@@ -60,14 +78,14 @@ public class ItemController {
             mv.addObject("title", "Item");
             return mv;
         }
-        itens.save(aux);
+        repositorioItens.save(aux);
         mv.setViewName("redirect:item-listar.html");
         return mv;
     }
 
     @RequestMapping("/item-excluir.html")
     public RedirectView remove(Item aux) {
-        itens.deleteById(aux.getId());
+        repositorioItens.deleteById(aux.getId());
         return new RedirectView("item-listar.html");
     }
     
