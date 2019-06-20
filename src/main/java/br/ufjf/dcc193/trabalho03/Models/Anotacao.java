@@ -1,13 +1,11 @@
 package br.ufjf.dcc193.trabalho03.Models;
 
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 /**
  * Anotacao
@@ -21,6 +19,7 @@ public class Anotacao {
     private String titulo;
     private String descricao;
     private String url;
+    @OneToOne(fetch = FetchType.EAGER)
     private Usuario usuario;
     private String dataInclusao;
     private String dataAlteracao;

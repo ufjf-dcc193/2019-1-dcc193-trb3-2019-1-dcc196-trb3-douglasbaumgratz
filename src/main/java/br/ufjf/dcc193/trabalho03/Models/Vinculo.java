@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -19,7 +20,9 @@ public class Vinculo {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;  
+    @OneToOne(fetch = FetchType.EAGER)
     private Item itemOrigem; 
+    @OneToOne(fetch = FetchType.EAGER)
     private Item itemDestino; 
     @OneToMany(fetch = FetchType.EAGER)
     private List<Etiqueta> etiqueta;
