@@ -20,7 +20,7 @@ public class Anotacao {
     private String titulo;
     private String descricao;
     private String url;
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.LAZY)
     private Usuario usuario;
     private String dataInclusao;
     private String dataAlteracao;

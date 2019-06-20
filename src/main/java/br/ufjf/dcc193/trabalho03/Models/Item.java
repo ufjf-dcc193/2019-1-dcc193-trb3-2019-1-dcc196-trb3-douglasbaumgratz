@@ -20,11 +20,11 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     private String titulo;
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.LAZY)
     private List<Anotacao> anotacao;
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.LAZY)
     private List<Etiqueta> etiqueta;
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.LAZY)
     private List<Vinculo> vinculo;
 
     public Item(Long id, String titulo) {
