@@ -19,8 +19,10 @@ public class Etiqueta {
     private String descricao;
     private String url;
 
-    public Etiqueta(Long id, String titulo, String descricao, String url) {
-        this.id = id;
+    public Etiqueta() {
+    }
+
+    public Etiqueta(String titulo, String descricao, String url) {
         this.titulo = titulo;
         this.descricao = descricao;
         this.url = url;

@@ -23,17 +23,17 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr th:each="avaliador: ${etiquetas}" th:object=${etiqueta}>
+                        <tr th:each="etiqueta: ${etiquetas}" th:object=${etiqueta}>
                             <td th:text=*{titulo}></td>
                             <td th:text=*{descricao}></td>
                             <td th:text=*{url}></td>
                             <td>
                                 <div class="row">
-                                    <form action="anotacao-editar.html">
+                                    <form action="etiqueta-editar.html">
                                         <input type="hidden" name="id" value="" th:value=*{id}>
                                         <button type="submit" class="btn btn-info btn-sm"><i class="far fa-edit"></i></button>
                                     </form>
-                                    <form action="anotacao-excluir.html" method="POST">
+                                    <form action="etiqueta-excluir.html" method="POST">
                                         <input type="hidden" name="id" value="" th:value=*{id}>
                                         <button type="submit" class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i></button>
                                     </form>
