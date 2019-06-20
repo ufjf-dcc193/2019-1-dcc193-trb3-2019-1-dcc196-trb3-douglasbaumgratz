@@ -11,25 +11,25 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
- * Item
+ * Vinculo
  */
 @Entity
-@Table(name = "item")
-public class Item {    
+@Table(name = "vinculo")
+public class Vinculo {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long id;    
-    private String titulo;
-    @OneToMany(fetch = FetchType.EAGER)
-    private List<Anotacao> anotacao;
+    private Long id;  
+    private Item itemOrigem; 
+    private Item itemDestino; 
     @OneToMany(fetch = FetchType.EAGER)
     private List<Etiqueta> etiqueta;
     @OneToMany(fetch = FetchType.EAGER)
-    private List<Vinculo> vinculo;
+    private List<Anotacao> anotacao;
 
-    public Item(Long id, String titulo) {
+    public Vinculo(Long id, Item itemOrigem, Item itemDestino) {
         this.id = id;
-        this.titulo = titulo;
+        this.itemOrigem = itemOrigem;
+        this.itemDestino = itemDestino;
     }
 
     public Long getId() {
@@ -40,20 +40,20 @@ public class Item {
         this.id = id;
     }
 
-    public String getTitulo() {
-        return titulo;
+    public Item getItemOrigem() {
+        return itemOrigem;
     }
 
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
+    public void setItemOrigem(Item itemOrigem) {
+        this.itemOrigem = itemOrigem;
     }
 
-    public List<Anotacao> getAnotacao() {
-        return anotacao;
+    public Item getItemDestino() {
+        return itemDestino;
     }
 
-    public void setAnotacao(List<Anotacao> anotacao) {
-        this.anotacao = anotacao;
+    public void setItemDestino(Item itemDestino) {
+        this.itemDestino = itemDestino;
     }
 
     public List<Etiqueta> getEtiqueta() {
@@ -64,18 +64,18 @@ public class Item {
         this.etiqueta = etiqueta;
     }
 
-    public List<Vinculo> getVinculo() {
-        return vinculo;
+    public List<Anotacao> getAnotacao() {
+        return anotacao;
     }
 
-    public void setVinculo(List<Vinculo> vinculo) {
-        this.vinculo = vinculo;
+    public void setAnotacao(List<Anotacao> anotacao) {
+        this.anotacao = anotacao;
     }
 
     @Override
     public String toString() {
-        return "Item [id=" + id + ", titulo=" + titulo + ", vinculo=" + vinculo + "]";
+        return "Vinculo [id=" + id + ", itemDestino=" + itemDestino + ", itemOrigem=" + itemOrigem + "]";
     }
-
+    
     
 }
