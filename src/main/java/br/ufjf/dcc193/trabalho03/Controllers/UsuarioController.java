@@ -13,9 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
-import br.ufjf.dcc193.trabalho03.Models.Etiqueta;
 import br.ufjf.dcc193.trabalho03.Models.Usuario;
-import br.ufjf.dcc193.trabalho03.Persistence.EtiquetaRepository;
 import br.ufjf.dcc193.trabalho03.Persistence.UsuarioRepository;
 
 /**
