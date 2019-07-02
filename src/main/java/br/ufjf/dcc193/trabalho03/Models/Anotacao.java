@@ -34,6 +34,15 @@ public class Anotacao {
         this.dataInclusao = dataInclusao;
         this.dataAlteracao = dataAlteracao;
     }
+    
+    public Anotacao(String titulo, String descricao, String url, Usuario usuario, String dataInclusao, String dataAlteracao) {        
+        this.titulo = titulo;
+        this.descricao = descricao;
+        this.url = url;
+        this.usuario = usuario;
+        this.dataInclusao = dataInclusao;
+        this.dataAlteracao = dataAlteracao;
+    }
 
     public Anotacao(String titulo, String descricao, String dataInclusao, String dataAlteracao) {        
         this.titulo = titulo;

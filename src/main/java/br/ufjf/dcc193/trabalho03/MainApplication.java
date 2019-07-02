@@ -65,8 +65,11 @@ public class MainApplication {
 		repositorioItem.save(item3);
 
 		anotacao1 = new Anotacao("Anotação 1", "descricao 1", "dataInclusao1", "dataAlteracao1");
+		anotacao1.setUsuario(usuario1);
 		anotacao2 = new Anotacao("Anotação 2", "descricao 2", "dataInclusao2", "dataAlteracao2");
+		anotacao2.setUsuario(usuario2);
 		anotacao3 = new Anotacao("Anotação 3", "descricao 3", "dataInclusao3", "dataAlteracao3");
+		anotacao3.setUsuario(usuario1);
 		repositorioAnotacao.save(anotacao1);
 		repositorioAnotacao.save(anotacao2);
 		repositorioAnotacao.save(anotacao3);
