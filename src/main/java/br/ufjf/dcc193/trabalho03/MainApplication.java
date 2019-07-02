@@ -52,8 +52,8 @@ public class MainApplication {
 		repositorioEtiqueta.save(etiqueta2);
 		repositorioEtiqueta.save(etiqueta3);
 
-		usuario1 = new Usuario("Usuario 1", 123, "Descrição 1", "usuario@gmail.com");
-		usuario2 = new Usuario("Usuario 2", 123, "Descrição 2", "usuario2@gmail.com");
+		usuario1 = new Usuario("Usuario 1", "123", "Descrição 1", "usuario@gmail.com");
+		usuario2 = new Usuario("Usuario 2", "123", "Descrição 2", "usuario2@gmail.com");
 		repositorioUsuario.save(usuario1);
 		repositorioUsuario.save(usuario2);
 

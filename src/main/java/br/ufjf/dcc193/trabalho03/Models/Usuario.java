@@ -16,13 +16,13 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     private String nome;
-    private int codigo;
+    private String codigo;
     private String descricao;
     private String email;
 
     public Usuario(){}
     
-    public Usuario(String nome, int codigo, String descricao, String email) {        
+    public Usuario(String nome, String codigo, String descricao, String email) {        
         this.nome = nome;
         this.codigo = codigo;
         this.descricao = descricao;
@@ -45,11 +45,11 @@ public class Usuario {
         this.nome = nome;
     }
 
-    public int getCodigo() {
+    public String getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(int codigo) {
+    public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
 
