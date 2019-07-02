@@ -2,6 +2,7 @@ package br.ufjf.dcc193.trabalho03.Controllers;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,50 +27,72 @@ public class UsuarioController {
     UsuarioRepository repositorioUsuarios;
 
     @RequestMapping("/usuario-listar.html")
-    public ModelAndView listar() {
+    public ModelAndView listar(HttpSession session) {
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("usuario/listar");
-        List<Usuario> usuarios = repositorioUsuarios.findAll();
-        mv.addObject("usuarios", usuarios);
-        mv.addObject("title", "Usuários");
+        mv.setViewName("redirect:index.html");
+        if (session.getAttribute("user") != null) {
+            mv.setViewName("usuario/listar");
+            List<Usuario> usuarios = repositorioUsuarios.findAll();
+            mv.addObject("usuarios", usuarios);
+            mv.addObject("title", "Usuários");
+            return mv;
+        }
         return mv;
     }
 
     @GetMapping("/usuario-novo.html")
-    public ModelAndView nova() {
+    public ModelAndView nova(HttpSession session) {
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("usuario/novo");
-        mv.addObject("title", "Usuário");
+        mv.setViewName("redirect:index.html");
+        if (session.getAttribute("user") != null) {
+            mv.setViewName("usuario/novo");
+            mv.addObject("title", "Usuário");
+            return mv;
+        }
         return mv;
     }
 
     @GetMapping("/usuario-editar.html")
-    public ModelAndView editar(Usuario aux) {
+    public ModelAndView editar(Usuario aux, HttpSession session) {
         ModelAndView mv = new ModelAndView();
-        Usuario usuario = repositorioUsuarios.findById(aux.getId()).get();
-        mv.setViewName("usuario/editar");
-        mv.addObject("title", "Usuário");
-        mv.addObject("usuario", usuario);
+        mv.setViewName("redirect:index.html");
+        if (session.getAttribute("user") != null) {
+            Usuario usuario = repositorioUsuarios.findById(aux.getId()).get();
+            mv.setViewName("usuario/editar");
+            mv.addObject("title", "Usuário");
+            mv.addObject("usuario", usuario);
+            return mv;
+        }
         return mv;
     }
 
     @PostMapping({ "/usuario-novo.html", "/usuario-editar.html" })
-    public ModelAndView salvar(@Valid Usuario aux, BindingResult binding) {
+    public ModelAndView salvar(@Valid Usuario aux, BindingResult binding, HttpSession session) {
         ModelAndView mv = new ModelAndView();
-        if (binding.hasErrors()) {
-            mv.setViewName("usuario/editar");
-            mv.addObject("usuario", aux);
-            mv.addObject("title", "Usuario");
+        mv.setViewName("redirect:index.html");
+        if (session.getAttribute("user") != null) {
+            if (binding.hasErrors()) {
+                mv.setViewName("usuario/editar");
+                mv.addObject("usuario", aux);
+                mv.addObject("title", "Usuario");
+                return mv;
+            }
+            repositorioUsuarios.save(aux);
+            mv.setViewName("redirect:usuario-listar.html");
             return mv;
         }
-        repositorioUsuarios.save(aux);
-        mv.setViewName("redirect:usuario-listar.html");
         return mv;
     }
 
     @RequestMapping("/usuario-excluir.html")
-    public RedirectView remove(Usuario aux) {
-        repositorioUsuarios.deleteById(aux.getId());
-        return new RedirectView("usuario-listar.html");
+    public ModelAndView remove(Usuario aux, HttpSession session) {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("redirect:index.html");
+        if (session.getAttribute("user") != null) {
+            repositorioUsuarios.deleteById(aux.getId());
+            mv.setViewName("redirect:usuario-listar.html");
+            return mv;
+        }
+        return mv;
     }
 }
