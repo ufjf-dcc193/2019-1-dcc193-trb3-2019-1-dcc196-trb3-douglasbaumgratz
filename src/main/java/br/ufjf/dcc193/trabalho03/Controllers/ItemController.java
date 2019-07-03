@@ -12,10 +12,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
 
-import br.ufjf.dcc193.trabalho03.Models.*;
-import br.ufjf.dcc193.trabalho03.Persistence.*;
+import br.ufjf.dcc193.trabalho03.Models.Anotacao;
+import br.ufjf.dcc193.trabalho03.Models.Etiqueta;
+import br.ufjf.dcc193.trabalho03.Models.Item;
+import br.ufjf.dcc193.trabalho03.Models.Vinculo;
+import br.ufjf.dcc193.trabalho03.Persistence.AnotacaoRepository;
+import br.ufjf.dcc193.trabalho03.Persistence.EtiquetaRepository;
+import br.ufjf.dcc193.trabalho03.Persistence.ItemRepository;
+import br.ufjf.dcc193.trabalho03.Persistence.VinculoRepository;
 
 /**
  * ItemController
