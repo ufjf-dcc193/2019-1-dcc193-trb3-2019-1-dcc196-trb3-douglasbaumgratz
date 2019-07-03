@@ -27,28 +27,20 @@ public class UsuarioController {
     UsuarioRepository repositorioUsuarios;
 
     @RequestMapping("/usuario-listar.html")
-    public ModelAndView listar(HttpSession session) {
+    public ModelAndView listar() {
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("redirect:index.html");
-        if (session.getAttribute("user") != null) {
-            mv.setViewName("usuario/listar");
-            List<Usuario> usuarios = repositorioUsuarios.findAll();
-            mv.addObject("usuarios", usuarios);
-            mv.addObject("title", "Usuários");
-            return mv;
-        }
+        mv.setViewName("usuario/listar");
+        List<Usuario> usuarios = repositorioUsuarios.findAll();
+        mv.addObject("usuarios", usuarios);
+        mv.addObject("title", "Usuários");
         return mv;
     }
 
     @GetMapping("/usuario-novo.html")
-    public ModelAndView nova(HttpSession session) {
+    public ModelAndView nova() {
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("redirect:index.html");
-        if (session.getAttribute("user") != null) {
-            mv.setViewName("usuario/novo");
-            mv.addObject("title", "Usuário");
-            return mv;
-        }
+        mv.setViewName("usuario/novo");
+        mv.addObject("title", "Usuário");
         return mv;
     }
 
@@ -57,7 +49,12 @@ public class UsuarioController {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("redirect:index.html");
         if (session.getAttribute("user") != null) {
+            Usuario user = (Usuario) session.getAttribute("user");
             Usuario usuario = repositorioUsuarios.findById(aux.getId()).get();
+            if(usuario.getId() != user.getId()) {
+                mv.setViewName("redirect:usuario-listar.html");
+                return mv;
+            }
             mv.setViewName("usuario/editar");
             mv.addObject("title", "Usuário");
             mv.addObject("usuario", usuario);
@@ -67,20 +64,16 @@ public class UsuarioController {
     }
 
     @PostMapping({ "/usuario-novo.html", "/usuario-editar.html" })
-    public ModelAndView salvar(@Valid Usuario aux, BindingResult binding, HttpSession session) {
+    public ModelAndView salvar(@Valid Usuario aux, BindingResult binding) {
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("redirect:index.html");
-        if (session.getAttribute("user") != null) {
-            if (binding.hasErrors()) {
-                mv.setViewName("usuario/editar");
-                mv.addObject("usuario", aux);
-                mv.addObject("title", "Usuario");
-                return mv;
-            }
-            repositorioUsuarios.save(aux);
-            mv.setViewName("redirect:usuario-listar.html");
+        if (binding.hasErrors()) {
+            mv.setViewName("usuario/editar");
+            mv.addObject("usuario", aux);
+            mv.addObject("title", "Usuario");
             return mv;
         }
+        repositorioUsuarios.save(aux);
+        mv.setViewName("redirect:usuario-listar.html");
         return mv;
     }
 
@@ -89,8 +82,14 @@ public class UsuarioController {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("redirect:index.html");
         if (session.getAttribute("user") != null) {
+            Usuario user = (Usuario) session.getAttribute("user");
+            if(aux.getId() != user.getId()) {
+                mv.setViewName("redirect:usuario-listar.html");
+                return mv;
+            }
             repositorioUsuarios.deleteById(aux.getId());
             mv.setViewName("redirect:usuario-listar.html");
+            session.setAttribute("user", null);
             return mv;
         }
         return mv;
